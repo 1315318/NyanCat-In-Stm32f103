@@ -10,7 +10,7 @@ struct AFIO
     volatile unsigned int EXTICR2; //外部中断配置寄存器2
     volatile unsigned int EXTICR3; //外部中断配置寄存器3
     volatile unsigned int EXTICR4; //外部中断配置寄存器4
-}
+};
 
 //定义AFIO初地址
 #define AFIO ((volatile struct AFIO*) 0x40010000) 
