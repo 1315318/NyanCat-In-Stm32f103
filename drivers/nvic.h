@@ -31,21 +31,21 @@ struct NVIC
 #define INTERRUPT_NACT 0 //中断非活动状态
 
 //中断使能
-void senr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)
+void senr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //中断除能
-void cenr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)
+void cenr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)''
 
 //中断悬起
-void spr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)
+void spr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //中断解悬
-void cpr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)
+void cpr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //查询中断活动状态
-unsigned char act_state(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts) 
+unsigned char act_state(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts); 
 
 //设置中断优先级，由于IPR寄存器只实现了高4位，所以支持的优先级为0~15
-void pri_nvic(volatile struct NVIC* nvic, unsigned char interrupts, unsigned char pri_num)
+void pri_nvic(volatile struct NVIC* nvic, unsigned char interrupts, unsigned char pri_num);
 
 #endif
