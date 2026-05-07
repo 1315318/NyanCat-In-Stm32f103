@@ -12,6 +12,6 @@
 #define HIGH                ((unsigned char) 1)
 
 //骗过链接器
-void __libc_init_array(void) {}
+void __libc_init_array(void);
 
 #endif
