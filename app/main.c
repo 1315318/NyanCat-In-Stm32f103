@@ -4,13 +4,14 @@ PA15 (JTDI)：JTAG 专用
 PB3 (JTDO)：JTAG 专用
 PB4 (NJTRST)：JTAG 专用*/
 
-#include "base_define.h"   //位操作及高低电平宏的定义
-#include "nyancat_video.h" //图像数组
-#include "nyancat_audio.h" //音频数组
-#include "gpio.h"          //GPIO寄存器及初地址相关定义和GPIO端口初始化与设置函数
-#include "video_play.h"    //视频播放函数
-#include "audio_play.h"    //音频播放函数
-#include "delay.h"         //延时函数
+#include "base_define.h"    //位操作及高低电平宏的定义
+#include "nyancat_video.h"  //图像数组
+#include "nyancat_audio.h"  //音频数组
+#include "gpio.h"           //GPIO寄存器及初地址相关定义和GPIO端口初始化与设置函数
+#include "video_play.h"     //视频播放函数
+#include "audio_play.h"     //音频播放函数
+#include "change_picture.h" //通过中断切换画面
+#include "delay.h"          //延时函数
 
 //PC13
 #define RCC_APB2ENR     (*(volatile unsigned int*) 0x40021018) 
@@ -41,6 +42,13 @@ int main(void)
     //主循环
     while (1)
     {
+        if (nyan_flag == 1) 
+        {
+            oled_init(); 
+            oled_display(nyan_cat);
+            delay_ms(100);
+            nyan_flag = 0; 
+        }
         for (int i = 0; i < 24; i++)
         {
             oled_display(nyancats[i]);

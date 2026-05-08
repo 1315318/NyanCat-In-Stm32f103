@@ -15,12 +15,14 @@ AS_SOURCES = startup/startup_stm32f103xb.s
 C_SOURCES =  $(wildcard app/*.c) \
              $(wildcard drivers/*.c) \
              $(wildcard include/*.c) \
+			 $(wildcard system/*.c)	 \
              $(wildcard *.c)
 
 # 4. 包含头文件路径 (让编译器能找到那些 .h)
 C_INCLUDES =  -Iapp \
               -Idrivers \
               -Iinclude \
+			  -Isystem  \
               -I.
 
 # 5. 编译参数设置

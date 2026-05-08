@@ -1,9 +1,16 @@
 #include "afio.h"
 #include "base_define.h"
+#include "rcc.h"
 #include "gpio.h"
 
+//RCC对应时钟使能
+void enr_afio(void)
+{
+    SET_BIT((RCC->APB2ENR), (1 << 0));
+}
+
 //事件控制
-void evcr_afio(volatile struct AFIO* afio, unsigned char prot_type, unsigned char pin_num)
+void evcr_afio(volatile struct AFIO_REG* afio, unsigned char prot_type, unsigned char pin_num)
 {
     CLEAN_BIT((afio->EVCR), (7 << 4));
     SET_BIT((afio->EVCR), (prot_type << 4)); //端口选择
@@ -13,7 +20,7 @@ void evcr_afio(volatile struct AFIO* afio, unsigned char prot_type, unsigned cha
 }
 
 //外部中断配置
-void exti_afio(volatile struct AFIO* afio, unsigned char exti_num, unsigned char port_type)
+void exti_afio(volatile struct AFIO_REG* afio, unsigned char exti_num, unsigned char port_type)
 {
     if (exti_num >= 0 && exti_num <= 3)
     {

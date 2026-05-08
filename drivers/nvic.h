@@ -1,8 +1,8 @@
-#ifndef INTERRUPT_H
-#define INTERRUPT_H
+#ifndef NVIC_H
+#define NVIC_H
 
 //定义NVIC寄存器
-struct NVIC
+struct NVIC_REG
 {
     volatile unsigned int  ISER[3];        //中断使能寄存器
     volatile unsigned int  RESERVED0[29];  //保留
@@ -20,32 +20,32 @@ struct NVIC
 };
 
 //定义NVIC初地址
-#define NVIC ((volatile struct NVIC*) 0xE000E100)
+#define NVIC ((volatile struct NVIC_REG*) 0xE000E100)
 
 //划分中断位置
-#define INTERRUPTS_L 1 //前32个中断号
-#define INTERRUPTS_H 2 //后28个中断号
+#define INTERRUPTS_L   1 //前32个中断号
+#define INTERRUPTS_H   2 //后28个中断号
 
 //定义中断活动状态
 #define INTERRUPT_ACT  1 //中断活动状态
 #define INTERRUPT_NACT 0 //中断非活动状态
 
 //中断使能
-void senr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
+void senr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //中断除能
-void cenr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts)''
+void cenr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //中断悬起
-void spr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
+void spr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //中断解悬
-void cpr_nvic(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts);
+void cpr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts);
 
 //查询中断活动状态
-unsigned char act_state(volatile struct NVIC* nvic, unsigned char interrupts_location, unsigned char interrupts); 
+unsigned char act_state(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts); 
 
 //设置中断优先级，由于IPR寄存器只实现了高4位，所以支持的优先级为0~15
-void pri_nvic(volatile struct NVIC* nvic, unsigned char interrupts, unsigned char pri_num);
+void pri_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts, unsigned char pri_num);
 
 #endif

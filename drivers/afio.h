@@ -2,7 +2,7 @@
 #define AFIO_H
 
 //定义AFIO寄存器
-struct AFIO
+struct AFIO_REG
 {
     volatile unsigned int EVCR;    //事件控制寄存器
     volatile unsigned int MAPR;    //复用重映射和调试I/O配置寄存器
@@ -13,7 +13,7 @@ struct AFIO
 };
 
 //定义AFIO初地址
-#define AFIO ((volatile struct AFIO*) 0x40010000) 
+#define AFIO ((volatile struct AFIO_REG*) 0x40010000) 
 
 //定义端口选择
 #define PA 0
@@ -37,5 +37,14 @@ struct AFIO
 #define EXTI13 13
 #define EXTI14 14
 #define EXTI15 15
+
+//RCC对应时钟使能
+void enr_afio(void);
+
+//事件控制
+void evcr_afio(volatile struct AFIO_REG* afio, unsigned char prot_type, unsigned char pin_num);
+
+//外部中断配置
+void exti_afio(volatile struct AFIO_REG* afio, unsigned char exti_num, unsigned char port_type);
 
 #endif
