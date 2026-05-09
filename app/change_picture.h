@@ -3,8 +3,10 @@
 
 extern volatile unsigned nyan_flag;
 
-void change_interrupt();
+//画面切换函数
+void change_interrupt(void);
 
+//中断服务函数
 void EXTI9_5_IRQHandler(void);
 
 #endif

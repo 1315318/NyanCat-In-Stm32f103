@@ -4,11 +4,11 @@
 //中断使能
 void senr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts)
 {
-    if (interrupts == INTERRUPTS_L)
+    if (interrupts_location == INTERRUPTS_L)
     {
         SET_BIT((nvic->ISER[0]), (1 << interrupts));
     }
-    if (interrupts == INTERRUPTS_H)
+    if (interrupts_location == INTERRUPTS_H)
     {
         SET_BIT((nvic->ISER[1]), (1 << interrupts));
     }
@@ -17,11 +17,11 @@ void senr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location
 //中断除能
 void cenr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts)
 {
-    if (interrupts == INTERRUPTS_L)
+    if (interrupts_location == INTERRUPTS_L)
     {
         SET_BIT((nvic->ICER[0]), (1 << interrupts));
     }
-    if (interrupts == INTERRUPTS_H)
+    if (interrupts_location == INTERRUPTS_H)
     {
         SET_BIT((nvic->ICER[1]), (1 << interrupts));
     }
@@ -30,11 +30,11 @@ void cenr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location
 //中断悬起
 void spr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts)
 {
-    if (interrupts == INTERRUPTS_L)
+    if (interrupts_location == INTERRUPTS_L)
     {
         SET_BIT((nvic->ISPR[0]), (1 << interrupts));
     }
-    if (interrupts == INTERRUPTS_H)
+    if (interrupts_location == INTERRUPTS_H)
     {
         SET_BIT((nvic->ISPR[1]), (1 << interrupts));
     }
@@ -43,11 +43,11 @@ void spr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location,
 //中断解悬
 void cpr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts)
 {
-    if (interrupts == INTERRUPTS_L)
+    if (interrupts_location == INTERRUPTS_L)
     {
         SET_BIT((nvic->CPR[0]), (1 << interrupts));
     }
-    if (interrupts == INTERRUPTS_H)
+    if (interrupts_location == INTERRUPTS_H)
     {
         SET_BIT((nvic->CPR[1]), (1 << interrupts));
     }
@@ -57,13 +57,13 @@ void cpr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location,
 unsigned char act_state(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts) 
 {
     unsigned char act_statue_flag;
-    if (interrupts == INTERRUPTS_L)
+    if (interrupts_location == INTERRUPTS_L)
     {
         act_statue_flag = READ_BIT((nvic->IABR[0]), (1 << interrupts));
     }
-    if (interrupts == INTERRUPTS_H)
+    if (interrupts_location == INTERRUPTS_H)
     {
-        act_statue_flag = SET_BIT((nvic->IABR[1]), (1 << interrupts));
+        act_statue_flag = READ_BIT((nvic->IABR[1]), (1 << interrupts));
     }
     return act_statue_flag;
 }

@@ -33,6 +33,8 @@ int main(void)
     init_gpio(GPIOA, GPIO_CH10, GPIO_MODE_OL); //PA10作为SDA，通用开漏输出模式，50MHZ
     set_gpio(GPIOA, GPIO_CH5, HIGH);
     set_gpio(GPIOA, GPIO_CH10, HIGH); 
+    //画面切换中断初始化
+    change_interrupt();
     //OLED初始化
     oled_init();
     oled_display(nyan_cat);

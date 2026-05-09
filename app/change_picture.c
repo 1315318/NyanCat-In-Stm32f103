@@ -9,7 +9,8 @@
 
 volatile unsigned nyan_flag = 0;
 
-void change_interrupt()
+//画面切换函数
+void change_interrupt(void)
 {
     struct INTERRUPT_CONFIG interrupt_config = {
         .nvic                = NVIC,
@@ -29,6 +30,7 @@ void change_interrupt()
     set_interrupt(&interrupt_config);
 }
 
+//中断服务函数
 void EXTI9_5_IRQHandler(void)
 {
     delay_ms(5);
