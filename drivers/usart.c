@@ -1,6 +1,6 @@
 #include "usart.h"
 
-//发送/接受的数据
+//数据寄存器
 void dr_usart(volatile struct USART_REG* usart, unsigned char data)
 {
     CLEAN_BIT((usart->DR), (0xFF << 0));
@@ -14,4 +14,10 @@ void brr_usart(volatile struct USART_REG* usart, unsigned int mant, unsigned cha
     SET_BIT((usart->BRR), ((frac & 0xF) << 0));
     CLEAN_BIT((usart->BRR), (0xFFF << 4));
     SET_BIT((usart->BRR), ((mant & 0xFFF) << 4));
+}
+
+//配置CR3寄存器
+void cr3_usart(volatile struct USART_REG* usart, unsigned char func_num)
+{
+    SET_BIT((usart->CR3), (1 << func_num));
 }

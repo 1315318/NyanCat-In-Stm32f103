@@ -18,4 +18,8 @@ struct USART_REG
 #define USART2 ((volatile struct USART_REG*) 0x40004400)
 #define USART3 ((volatile struct USART_REG*) 0x40004800)
 
+
+#define DMAT 7 //DMA使能发送
+#define DMAR 6 //DMA使能接收
+
 #endif
