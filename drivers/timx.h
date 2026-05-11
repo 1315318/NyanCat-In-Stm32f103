@@ -62,6 +62,10 @@ struct TIM
 #define TDE_OFF     ((unsigned char) 0)   //禁止触发DMA请求
 #define TDE_ON      ((unsigned char) 1)   //允许触发DMA请求
 
+//定义更新中断开关
+#define UIE_OFF     ((unsigned char) 0)   //禁止更新中断
+#define UIE_ON      ((unsigned char) 1)   //允许更新中断
+
 //定义更新事件的产生开关
 #define UG_OFF      ((unsigned char) 0)   //无动作
 #define UG_ON       ((unsigned char) 1)   //重新初始化计数器，并产生一个更新事件
@@ -87,6 +91,7 @@ struct INIT_CONFIG
     unsigned char urs;
     unsigned char uids;
     unsigned char tde;
+    unsigned char uie;
     unsigned char ug;
     unsigned char ocm;
     unsigned char ocpe;

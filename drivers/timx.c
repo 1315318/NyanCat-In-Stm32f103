@@ -29,6 +29,7 @@ void init_tim(struct INIT_CONFIG* init_config)
     SET_BIT((init_config->tim_type->CR1), (init_config->apre << 7));                                              //设置自动重装载预装载
     SET_BIT((init_config->tim_type->CR1), (init_config->urs << 2));                                               //设置更新源
     SET_BIT((init_config->tim_type->DIER), (init_config->tde << 8));                                              //设置是否更新的DMA请求
+    SET_BIT((init_config->tim_type->DIER), (init_config->uie << 0));                                              //设置是否允许更新中断
     if (init_config->channel_num == TIM_CH1 || init_config->channel_num == TIM_CH2)
     {
         CLEAN_BIT((init_config->tim_type->CCMR1), (0x7 << ((init_config->channel_num - 1) * 8 + 4)));

@@ -20,15 +20,15 @@ struct NVIC_REG
 };
 
 //定义NVIC初地址
-#define NVIC ((volatile struct NVIC_REG*) 0xE000E100)
+#define NVIC           ((volatile struct NVIC_REG*) 0xE000E100)
 
 //划分中断位置
-#define INTERRUPTS_L   1 //前32个中断号
-#define INTERRUPTS_H   2 //后28个中断号
+#define INTERRUPTS_L   ((unsigned char) 1) //前32个中断号
+#define INTERRUPTS_H   ((unsigned char) 2) //后28个中断号
 
 //定义中断活动状态
-#define INTERRUPT_ACT  1 //中断活动状态
-#define INTERRUPT_NACT 0 //中断非活动状态
+#define INTERRUPT_ACT  ((unsigned char) 1) //中断活动状态
+#define INTERRUPT_NACT ((unsigned char) 0) //中断非活动状态
 
 //中断使能
 void senr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location, unsigned char interrupts);

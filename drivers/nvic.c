@@ -10,7 +10,7 @@ void senr_nvic(volatile struct NVIC_REG* nvic, unsigned char interrupts_location
     }
     if (interrupts_location == INTERRUPTS_H)
     {
-        SET_BIT((nvic->ISER[1]), (1 << interrupts));
+        SET_BIT((nvic->ISER[1]), (1 << (interrupts - 32)));
     }
 }
 

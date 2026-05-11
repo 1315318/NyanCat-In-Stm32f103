@@ -4,3 +4,5 @@
 *.hex
 *.bin
 build/
+send_audio.py
+nyan_cat.raw

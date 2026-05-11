@@ -29,10 +29,11 @@ int main(void)
     SET_BIT((GPIOC_CRH), (0x3 << 20));
     //GPIO端口初始化
     enr_gpio(GPIOA);
-    init_gpio(GPIOA, GPIO_CH5, GPIO_MODE_OL);  //PA5作为SCK，通用开漏输出模式，50MHZ
-    init_gpio(GPIOA, GPIO_CH10, GPIO_MODE_OL); //PA10作为SDA，通用开漏输出模式，50MHZ
+    enr_gpio(GPIOB);
+    init_gpio(GPIOA, GPIO_CH5, GPIO_MODE_OL); //PA5作为SCK，通用开漏输出模式，50MHZ
+    init_gpio(GPIOB, GPIO_CH5, GPIO_MODE_OL); //PB5作为SDA，通用开漏输出模式，50MHZ
     set_gpio(GPIOA, GPIO_CH5, HIGH);
-    set_gpio(GPIOA, GPIO_CH10, HIGH); 
+    set_gpio(GPIOB, GPIO_CH5, HIGH); 
     //画面切换中断初始化
     change_interrupt();
     //OLED初始化
@@ -48,7 +49,7 @@ int main(void)
         {
             oled_init(); 
             oled_display(nyan_cat);
-            delay_ms(100);
+            delay_ms(500);
             nyan_flag = 0; 
         }
         for (int i = 0; i < 24; i++)
