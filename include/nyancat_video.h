@@ -5,6 +5,6 @@
 extern const unsigned char nyan_cat[];
 
 //动画数据
-extern const unsigned char* nyancats[];
+extern const unsigned char *nyancats[];
 
 #endif

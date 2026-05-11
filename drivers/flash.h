@@ -1,7 +1,7 @@
 #ifndef FLASH_H
 #define FLASH_H
 
-//定义Flash寄存器
+//Flash寄存器
 struct Flash
 {
     volatile unsigned int ACR;
@@ -15,7 +15,7 @@ struct Flash
     volatile unsigned int WRPR;
 };
 
-//定义Flash初地址
-#define Flash ((volatile struct Flash*) 0x40022000)
+//Flash初地址
+#define Flash ((volatile struct Flash *) 0x40022000)
 
 #endif

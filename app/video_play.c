@@ -9,6 +9,7 @@ void oled_clean(void)
     cmd_write(0x7F);             //Column End 127
     double_cmd_write(0x22,0x00); //Page Start 0
     cmd_write(0x07);             //Page End 7   
+    
     i2c_start();
     i2c_send(0x78);       
     i2c_send(0x40);
@@ -16,6 +17,7 @@ void oled_clean(void)
     {
         i2c_send(0x00); 
     }
+    
     i2c_over();
 }
 
@@ -23,6 +25,7 @@ void oled_clean(void)
 void oled_init(void)
 {
     delay_ms(delay_init);
+    
     cmd_write(0xAE);              //关闭屏幕
     double_cmd_write(0xA8, 0x3F); //Set MUX Ratio
     double_cmd_write(0xD3, 0x00); //Set Display Offset
@@ -38,6 +41,7 @@ void oled_init(void)
     double_cmd_write(0xD9, 0xF1); //Set Pre-charge Period
     double_cmd_write(0xDB, 0x30); //Set VCOMH Deselete Level
     double_cmd_write(0x8D, 0x14); //Enable Charge Pump Regulato
+    
     oled_clean();
     cmd_write(0xAF);              //Display On
 }
@@ -49,6 +53,7 @@ void oled_display(const unsigned char *display_num)
     cmd_write(0x7F);              //Column End 127
     double_cmd_write(0x22, 0x00); //Page Start 0
     cmd_write(0x07);              //Page End 7   
+    
     i2c_start();
     i2c_send(0x78);       
     i2c_send(0x40);
@@ -56,5 +61,6 @@ void oled_display(const unsigned char *display_num)
     {
         i2c_send(display_num[i]); 
     }
+    
     i2c_over();
 }

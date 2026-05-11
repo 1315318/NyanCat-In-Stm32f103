@@ -1,7 +1,7 @@
 #ifndef RCC_H
 #define RCC_H
 
-//定义RCC寄存器
+//RCC寄存器
 struct RCC
 {
     volatile unsigned int CR;
@@ -16,9 +16,10 @@ struct RCC
     volatile unsigned int CSR;
 };
 
-//定义RCC初地址
-#define RCC ((volatile struct RCC*) 0x40021000)
+//RCC初地址
+#define RCC ((volatile struct RCC *) 0x40021000)
 
+//系统时钟初始化
 void SystemInit(void); 
 
 #endif

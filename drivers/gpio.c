@@ -3,7 +3,7 @@
 #include "rcc.h"
 
 //RCC对应时钟使能
-void enr_gpio(volatile struct GPIOx* gpio_type)
+void enr_gpio(volatile struct GPIOx *gpio_type)
 {
     if (gpio_type == GPIOA)
     {
@@ -20,7 +20,7 @@ void enr_gpio(volatile struct GPIOx* gpio_type)
 }
 
 //gpio_type为引脚类型，pin_num为引脚号，范围0～15，mode为输出模式
-void init_gpio(volatile struct GPIOx* gpio_type, unsigned char pin_num, unsigned char mode)
+void init_gpio(volatile struct GPIOx *gpio_type, unsigned char pin_num, unsigned char mode)
 {
     if (pin_num >=0 && pin_num <= 7)
     {
@@ -35,7 +35,7 @@ void init_gpio(volatile struct GPIOx* gpio_type, unsigned char pin_num, unsigned
 }
 
 //gpio_type为引脚类型，pin_num为引脚号，范围0～15
-void set_gpio(volatile struct GPIOx* gpio_type, unsigned char pin_num, unsigned char level)
+void set_gpio(volatile struct GPIOx *gpio_type, unsigned char pin_num, unsigned char level)
 {
     if (level == LOW)
     {

@@ -1,13 +1,13 @@
 #ifndef I2C_H
 #define I2C_H
 
-//定义设置高低电平
-#define SCK_UP       BSRR_SET((GPIOA->BSRR), (1 << 5))
-#define SCK_DOWN     BSRR_CLEAN((GPIOA->BSRR), (1 << 5))
-#define SDA_UP       BSRR_SET((GPIOB->BSRR), (1 << 5))
-#define SDA_DOWN     BSRR_CLEAN((GPIOB->BSRR), (1 << 5))
+//设置高低电平
+#define SCK_UP   BSRR_SET((GPIOA->BSRR), (1 << 5))
+#define SCK_DOWN BSRR_CLEAN((GPIOA->BSRR), (1 << 5))
+#define SDA_UP   BSRR_SET((GPIOB->BSRR), (1 << 5))
+#define SDA_DOWN BSRR_CLEAN((GPIOB->BSRR), (1 << 5))
 
-//定义延时宏对应不同延时需求
+//延时宏
 #define delay_normal ((unsigned char) 1)
 #define delay_init   ((unsigned char) 100)
 

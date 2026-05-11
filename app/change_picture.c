@@ -12,20 +12,22 @@ volatile unsigned nyan_flag = 0;
 //画面切换函数
 void change_interrupt(void)
 {
-    struct INTERRUPT_CONFIG interrupt_config = {
-        .nvic                = NVIC,
-        .exti                = EXTI,
-        .afio                = AFIO,
-        .gpio_type           = GPIOB,
+    struct INTERRUPT_CONFIG interrupt_config = 
+    {
+        .nvic = NVIC,
+        .exti = EXTI,
+        .afio = AFIO,
+        .gpio_type = GPIOB,
+        .pin_num = GPIO_CH8,
+        .mode = GPIO_MODE_DRINPUT,
+        .level = HIGH,
+        .interrupts = 23,
+        .pri_num = 30,
+        .exti_num = 8,
+        .port_type = PB,
+        .trig_method = FAL_EDG,
         .interrupts_location = INTERRUPTS_L,
-        .interrupts          = 23,
-        .pri_num             = 30,
-        .exti_num            = 8,
-        .port_type           = PB,
-        .trig_method         = FAL_EDG,
-        .pin_num             = GPIO_CH8,
-        .mode                = GPIO_MODE_DRINPUT,
-        .level               = HIGH,
+
     };
     set_interrupt(&interrupt_config);
 }

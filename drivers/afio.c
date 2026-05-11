@@ -10,17 +10,22 @@ void enr_afio(void)
 }
 
 //事件控制
-void evcr_afio(volatile struct AFIO_REG* afio, unsigned char prot_type, unsigned char pin_num)
+void evcr_afio(volatile struct AFIO_REG *afio, unsigned char prot_type, unsigned char pin_num)
 {
+    //端口选择
     CLEAN_BIT((afio->EVCR), (7 << 4));
-    SET_BIT((afio->EVCR), (prot_type << 4)); //端口选择
+    SET_BIT((afio->EVCR), (prot_type << 4)); 
+    
+    //引脚选择
     CLEAN_BIT((afio->EVCR), (0xF << 0));
-    SET_BIT((afio->EVCR), (pin_num << 0));   //引脚选择
-    SET_BIT((afio->EVCR), (1 << 7));         //允许事件输出
+    SET_BIT((afio->EVCR), (pin_num << 0));   
+    
+    //允许事件输出
+    SET_BIT((afio->EVCR), (1 << 7));         
 }
 
 //外部中断配置
-void exti_afio(volatile struct AFIO_REG* afio, unsigned char exti_num, unsigned char port_type)
+void exti_afio(volatile struct AFIO_REG *afio, unsigned char exti_num, unsigned char port_type)
 {
     if (exti_num >= 0 && exti_num <= 3)
     {
