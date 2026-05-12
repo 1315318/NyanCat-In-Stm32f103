@@ -19,11 +19,10 @@ void enr_usart(volatile struct USART_REG *usart)
     }
 }
 
-//数据寄存器
+//数据寄存器DR在内部实际上对应两个寄存器，一个只读的接收数据寄存器(RDR)和一个只写的发送数据寄存器(TDR)，向DR执行写入操作时，硬件会立刻把值装载到移位寄存器并启动发送时序
 void dr_usart(volatile struct USART_REG *usart, unsigned char data)
 {
-    CLEAN_BIT((usart->DR), (0xFF << 0));
-    SET_BIT((usart->DR), (0xFF << 0));
+    usart->DR = data;
 }
 
 //设置波特率，mant为USART分频器除法因子(USARTDIV)的整数部分，farc为USART分频器除法因子(USARTDIV)的小数部分

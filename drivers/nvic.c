@@ -23,7 +23,7 @@ void cenr_nvic(volatile struct NVIC_REG *nvic, unsigned char interrupts_location
     }
     if (interrupts_location == INTERRUPTS_H)
     {
-        SET_BIT((nvic->ICER[1]), (1 << interrupts));
+        SET_BIT((nvic->ICER[1]), (1 << (interrupts - 32)));
     }
 }
 
@@ -36,7 +36,7 @@ void spr_nvic(volatile struct NVIC_REG *nvic, unsigned char interrupts_location,
     }
     if (interrupts_location == INTERRUPTS_H)
     {
-        SET_BIT((nvic->ISPR[1]), (1 << interrupts));
+        SET_BIT((nvic->ISPR[1]), (1 << (interrupts - 32)));
     }
 }
 
@@ -45,11 +45,11 @@ void cpr_nvic(volatile struct NVIC_REG *nvic, unsigned char interrupts_location,
 {
     if (interrupts_location == INTERRUPTS_L)
     {
-        SET_BIT((nvic->CPR[0]), (1 << interrupts));
+        SET_BIT((nvic->ICPR[0]), (1 << interrupts));
     }
     if (interrupts_location == INTERRUPTS_H)
     {
-        SET_BIT((nvic->CPR[1]), (1 << interrupts));
+        SET_BIT((nvic->ICPR[1]), (1 << (interrupts - 32)));
     }
 }
 
@@ -63,7 +63,7 @@ unsigned char act_state(volatile struct NVIC_REG *nvic, unsigned char interrupts
     }
     if (interrupts_location == INTERRUPTS_H)
     {
-        act_statue_flag = READ_BIT((nvic->IABR[1]), (1 << interrupts));
+        act_statue_flag = READ_BIT((nvic->IABR[1]), (1 << (interrupts - 32)));
     }
     return act_statue_flag;
 }

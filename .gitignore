@@ -4,5 +4,6 @@
 *.hex
 *.bin
 build/
-send_audio.py
+send.py
 nyan_cat.raw
+VSCode.md

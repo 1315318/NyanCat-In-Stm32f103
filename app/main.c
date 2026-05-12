@@ -5,25 +5,24 @@
 #include "video_play.h"     
 #include "audio_play.h"     
 #include "change_picture.h" 
-#include "delay.h"          
+#include "delay.h"    
+#include "text_communication.h"      
 
 //PC13
-#define RCC_APB2ENR     (*(volatile unsigned int *) 0x40021018) 
-#define GPIOC_CRH       (*(volatile unsigned int *) 0x40011004)
-#define GPIOC_ODR       (*(volatile unsigned int *) 0x4001100C)
+#define RCC_APB2ENR (*(volatile unsigned int *) 0x40021018) 
+#define GPIOC_CRH   (*(volatile unsigned int *) 0x40011004)
+#define GPIOC_ODR   (*(volatile unsigned int *) 0x4001100C)
 
-//切换延时
-#define delay_change    ((unsigned char) 1000) 
-//动画延时
-#define delay_animation ((unsigned char) 10)   
+#define delay_animation 10   //动画延时
+#define delay_change    1000 //切换延时
 
 int main(void) 
 {
-    //PC13
+    // //PC13
     SET_BIT((RCC_APB2ENR), (1 << 4));
     CLEAN_BIT((GPIOC_CRH), (0xF << 20));
     SET_BIT((GPIOC_CRH), (0x3 << 20));
-    
+
     //GPIO端口初始化
     enr_gpio(GPIOA);
     enr_gpio(GPIOB);
@@ -34,20 +33,17 @@ int main(void)
     set_gpio(GPIOA, GPIO_CH5, HIGH);
     set_gpio(GPIOB, GPIO_CH5, HIGH); 
     
-    //画面切换中断初始化
+    //画面切换，OLED初始化，音频播放，文本接收
     change_interrupt();
-    
-    //OLED初始化
     oled_init();
     oled_display(nyan_cat);
     delay_ms(delay_change);
-    
-    //音频播放函数调用
     audio_play();
     
     //主循环
     while (1)
     {
+        text_communication();
         if (nyan_flag == 1) 
         {
             oled_init(); 

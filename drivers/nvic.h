@@ -10,7 +10,7 @@ struct NVIC_REG
     volatile unsigned int  RESERVED1[29];  
     volatile unsigned int  ISPR[3];        
     volatile unsigned int  RESERVED2[29];  
-    volatile unsigned int  CPR[3];         
+    volatile unsigned int  ICPR[3];         
     volatile unsigned int  RESERVED3[29];  
     volatile unsigned int  IABR[3];        
     volatile unsigned int  RESERVED4[61];  

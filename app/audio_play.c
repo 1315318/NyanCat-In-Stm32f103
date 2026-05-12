@@ -11,7 +11,8 @@ void audio_play(void)
     enr_tim(TIM2);
     enr_tim(TIM3);
     
-    struct INIT_CONFIG tim2_config = { 
+    struct INIT_CONFIG tim2_config = 
+    { 
         .tim_type = TIM2,
         .channel_num = TIM_CH1,
         .apre = APRE_ON,
@@ -24,7 +25,8 @@ void audio_play(void)
         .ocm = OCM_PWM1,
         .ocpe = OCPE_ON,
     };
-    struct INIT_CONFIG tim3_config = {
+    struct INIT_CONFIG tim3_config = 
+    {
         .tim_type = TIM3,
         .channel_num = TIM_CH1,
         .apre = APRE_ON,
