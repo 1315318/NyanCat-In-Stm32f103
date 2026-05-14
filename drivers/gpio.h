@@ -27,6 +27,7 @@ struct GPIOx
 #define GPIO_MODE_OL      0x7 //通用开漏输出模式，50MHZ
 #define GPIO_MODE_AFPP    0xB //复用推挽输出模式，50MHZ
 #define GPIO_MODE_DRINPUT 0x8 //上拉下拉输入模式
+#define GPIO_MODE_ANALIN  0   //模拟输入模式
 
 //引脚号
 #define GPIO_CH0  0   

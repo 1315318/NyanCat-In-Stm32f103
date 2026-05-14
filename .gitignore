@@ -5,5 +5,6 @@
 *.bin
 build/
 send.py
+receive.py
 nyan_cat.raw
 VSCode.md

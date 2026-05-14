@@ -6,7 +6,8 @@
 #include "audio_play.h"     
 #include "change_picture.h" 
 #include "delay.h"    
-#include "text_communication.h"      
+#include "text_communication.h"  
+#include "adc_conversion.h"    
 
 //PC13
 #define RCC_APB2ENR (*(volatile unsigned int *) 0x40021018) 
@@ -38,12 +39,13 @@ int main(void)
     oled_init();
     oled_display(nyan_cat);
     delay_ms(delay_change);
-    audio_play();
+    // audio_play();
+    Hardcore_Init_All();
     
     //主循环
     while (1)
     {
-        text_communication();
+        // text_communication();
         if (nyan_flag == 1) 
         {
             oled_init(); 
